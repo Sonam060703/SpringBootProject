@@ -54,7 +54,7 @@ class AuthServiceTest {
     private Authentication authentication;
 
     @InjectMocks
-    private AuthService authService;
+    private AuthServiceTest authService;
 
     private SignupRequest signupRequest;
     private LoginRequest loginRequest;
