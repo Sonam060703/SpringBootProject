@@ -18,6 +18,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: restaurant
+
         ports:
           - 3307:3306
 
@@ -40,6 +41,7 @@ jobs:
 
       - name: Build and Test with Maven
         run: mvn clean verify
+
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
