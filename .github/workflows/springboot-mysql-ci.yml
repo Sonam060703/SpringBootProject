@@ -19,9 +19,10 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: restaurant
           MYSQL_USER: root
+          
         ports:
           - 3306:3306
-
+          
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -41,6 +42,7 @@ jobs:
 
       - name: Build and Test with Maven
         run: mvn clean verify
+
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
