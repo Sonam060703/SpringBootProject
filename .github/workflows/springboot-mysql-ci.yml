@@ -19,9 +19,11 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: restaurant
           MYSQL_USER: root
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+#          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         ports:
           - 3306:3306
+
+
 
 
     steps:
@@ -55,8 +57,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
+
           docker build -t ghcr.io/sonam060703/springbootproject:latest .
 
       - name: Push Docker Image to GitHub Container Registry
         run: |
           docker push ghcr.io/sonam060703/springbootproject:latest
+
