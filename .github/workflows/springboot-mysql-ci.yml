@@ -18,9 +18,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: restaurant
-          MYSQL_USER: root
         ports:
-          - 3306:3306
+          - 3307:3306
 
     steps:
       - name: Checkout repository
