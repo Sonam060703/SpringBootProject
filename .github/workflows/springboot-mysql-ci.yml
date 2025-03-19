@@ -46,21 +46,31 @@ jobs:
       - name: Build and Test with Maven
         run: mvn clean verify
 
-      - name: Log in to Docker Hub
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+         image: anujconsultadd/java_springboot_librarymanagement
+         tags: v1, latest
+         registry: docker.io
+         dockerfile: Dockerfile
+         username: ${{ secrets.DOCKER_USERNAME }}
+         password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GIT_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+      # - name: Log in to Docker Hub
+      #   env:
+      #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      #   run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-      - name: Build Docker Image
-        run: |
+      # - name: Log in to GitHub Container Registry
+      #   run: echo "${{ secrets.GIT_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-          docker build -t ghcr.io/sonam060703/springbootproject:latest .
+      # - name: Build Docker Image
+      #   run: |
 
-      - name: Push Docker Image to GitHub Container Registry
-        run: |
-          docker push ghcr.io/sonam060703/springbootproject:latest
+      #     docker build -t ghcr.io/sonam060703/springbootproject:latest .
+
+      # - name: Push Docker Image to GitHub Container Registry
+      #   run: |
+      #     docker push ghcr.io/sonam060703/springbootproject:latest
 
